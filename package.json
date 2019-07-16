@@ -5,6 +5,10 @@
   "repository": "https://github.com/ALexander4295502/rxjs-spaceship.git",
   "author": "Zheng Yuan <yuanzheng@sportdex.io>",
   "license": "MIT",
+  "scripts": {
+    "build": "webpack --env.prod -p",
+    "start": "webpack-dev-server --env.dev"
+  },
   "dependencies": {
     "rxjs": "5.5.0"
   },
@@ -13,6 +17,7 @@
     "@babel/preset-env": "^7.5.4",
     "babel-loader": "^8.0.6",
     "glob": "^7.1.4",
+    "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.35.3",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2"

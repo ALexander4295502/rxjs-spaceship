@@ -1,12 +1,14 @@
 const glob = require("glob");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
+module.exports = (env) => ({
   entry: glob.sync("./src/js/*.js"),
   output: {
+    path: __dirname + '/dist',
     filename: "bundle.js"
   },
-  watch: true,
-  devtool: 'source-map',
+  watch: env.dev,
+  devtool: env.dev ? 'inline-source-map' : 'source-map',
   module: {
     rules: [
       {
@@ -17,5 +19,10 @@ module.exports = {
         }
       }
     ]
-  }
-};
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+        template: './src/html/spaceship.html'
+    })
+  ]
+});
