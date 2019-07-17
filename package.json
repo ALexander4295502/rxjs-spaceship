@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "main": "spaceship.js",
   "repository": "https://github.com/ALexander4295502/rxjs-spaceship.git",
+  "homepage": "https://alexander4295502.github.io/rxjs-spaceship/",
   "author": "Zheng Yuan <yuanzheng@sportdex.io>",
   "license": "MIT",
   "scripts": {
     "build": "webpack --env.prod -p",
-    "start": "webpack-dev-server --env.dev"
+    "start": "webpack-dev-server --env.dev",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "rxjs": "5.5.0"
@@ -16,6 +19,7 @@
     "@babel/core": "^7.5.4",
     "@babel/preset-env": "^7.5.4",
     "babel-loader": "^8.0.6",
+    "gh-pages": "^2.0.1",
     "glob": "^7.1.4",
     "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.35.3",
