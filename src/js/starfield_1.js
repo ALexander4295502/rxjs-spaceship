@@ -1,8 +1,18 @@
 import { Observable } from "rxjs";
-import { canvas } from "./spaceship";
+import { canvas, ctx } from "./spaceship";
 
 const SPEED = 40;
 const STAR_NUMBER = 250;
+
+function paintStars(stars) {
+  ctx.fillStyle = "#000";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "#fff";
+  star.forEach(star => {
+    ctx.fillRect(star.x, star.y, star.size, star.size);
+  });
+}
+
 const StarStream$ = Observable.range(1, STAR_NUMBER)
   .map(() => ({
     x: parseInt(Math.random() * canvas.width, 10),
@@ -20,4 +30,5 @@ const StarStream$ = Observable.range(1, STAR_NUMBER)
       });
       return starArray;
     })
-  );
+  )
+  .subscribe(paintStars);

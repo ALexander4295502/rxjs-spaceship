@@ -5,4 +5,4 @@ document.body.appendChild(canvas);
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-export {canvas};
+export {canvas, ctx};
