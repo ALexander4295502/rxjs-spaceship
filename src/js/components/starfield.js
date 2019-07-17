@@ -1,8 +1,7 @@
 import { Observable } from "rxjs";
-import { canvas, ctx } from "./spaceship";
 
-const SPEED = 40;
-const STAR_NUMBER = 250;
+import { canvas, ctx } from "./canvas";
+import { STAR_NUMBER, SPEED } from "../Constants";
 
 function paintStars(stars) {
   ctx.fillStyle = "#000";
@@ -30,5 +29,6 @@ const StarStream$ = Observable.range(1, STAR_NUMBER)
       });
       return starArray;
     })
-  )
-  .subscribe(paintStars);
+  );
+
+export { paintStars, StarStream$ };
