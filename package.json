@@ -10,7 +10,7 @@
     "build": "webpack --env.prod -p",
     "start": "webpack-dev-server --env.dev",
     "predeploy": "yarn run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "rxjs": "5.5.0"

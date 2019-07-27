@@ -6,10 +6,12 @@ import {
   SHOOTING_SPEED,
   SHOT,
   DIRECTION,
-  HERO_Y
+  HERO_Y,
+  SCORE_INCREASE
 } from "../Constants";
-import { drawTriangle } from "../Helpers";
+import { drawTriangle, collision } from "../Helpers";
 import { SpaceShip$ } from "./hero";
+import { ScoreSubject$ } from "./score";
 
 const playerFiring$ = Observable.merge(
   Observable.fromEvent(canvas, "click"),
@@ -36,8 +38,17 @@ const HeroShots$ = Observable.combineLatest(
     return shotArray;
   }, []);
 
-function paintHeroShots(heroShots) {
-  heroShots.forEach(shot => {
+function paintHeroShots(heroShots, enemies) {
+  heroShots.forEach((shot, i) => {
+    for (let l = 0; l < enemies.length; l++) {
+      const enemy = enemies[l];
+      if (!enemy.isDead && collision(shot, enemy)) {
+        ScoreSubject$.next(SCORE_INCREASE);
+        enemy.isDead = true;
+        shot.x = shot.y = -100;
+        break;
+      }
+    }
     shot.y -= SHOOTING_SPEED;
     drawTriangle(shot.x, shot.y, SHOT.SIZE, SHOT.COLOR, DIRECTION.UP);
   });
